@@ -59,12 +59,13 @@
 # include <unistd.h>
 #endif
 
-#if defined(HAVE_SYSCALL_H) || defined(HAVE_SYS_SYSCALL_H)
-# define safe_write(fd, s, len)  syscall(SYS_write, fd, s, len)
-#else
+// FIXME(gangliao): Disable syscall for WatchOS 
+// #if defined(HAVE_SYSCALL_H) || defined(HAVE_SYS_SYSCALL_H)
+// # define safe_write(fd, s, len)  syscall(SYS_write, fd, s, len)
+// #else
   // Not so safe, but what can you do?
 # define safe_write(fd, s, len)  write(fd, s, len)
-#endif
+// #endif
 
 _START_GOOGLE_NAMESPACE_
 
